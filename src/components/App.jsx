@@ -23,11 +23,11 @@ class App extends Component {
 
   componentDidUpdate(_, prevState) {
     if (prevState.topic !== this.state.topic || prevState.page !== this.state.page) {
-      this.AddImages(); 
+      this.searchImages(); 
     }
   }
 
-  AddImages = async () => {
+  searchImages = async () => {
     const { topic, page } = this.state;
     this.setState({ status: "pending" });
 

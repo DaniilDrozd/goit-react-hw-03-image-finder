@@ -19,15 +19,15 @@ class ImageGalleryItem extends Component {
     return (
       <div className={css.ImageGalleryItem}>
         <img
-        className={css.ImageGalleryItemImg}
+          className={css.ImageGalleryItemImg}
           src={item.webformatURL}
-          alt={item.img}
-          onClick={this.handleModalToggle} 
+          alt={item.tags}  
+          onClick={this.handleModalToggle}
         />
         {showModal && (
           <Modal
             tags={item.tags}
-            onClose={this.handleModalToggle} 
+            onClose={this.handleModalToggle}
           />
         )}
       </div>
@@ -41,7 +41,8 @@ ImageGalleryItem.propTypes = {
     webformatURL: PropTypes.string.isRequired,
     tags: PropTypes.string.isRequired,
     largeImageURL: PropTypes.string.isRequired,
-  }),
+  }).isRequired, 
 };
 
 export default ImageGalleryItem;
+
