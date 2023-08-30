@@ -48,7 +48,7 @@ class App extends Component {
         totalHits: data.totalHits,
       }));
     } catch (error) {
-      this.setState({ status: "rejected", error: "Something went wrong!" });
+      this.setState({ status: "rejected", error: "Something wrong" });
     }
   };
 
