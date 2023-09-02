@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import propTypes from "prop-types";
-
+import css from './Modal.module.css'
 class Modal extends Component {
   componentDidMount() {
     window.addEventListener('keydown', this.KeyDown); 
@@ -31,8 +31,8 @@ class Modal extends Component {
     const { ImageURL, tags } = this.props;
 
     return (
-      <div className="modal" onClick={this.PagesClose}>
-        <div className="modal-content">
+      <div className={css.modal} onClick={this.PagesClose}>
+        <div className={css.modalItem}>
           <img src={ImageURL} alt={tags} />
         </div>
       </div>
@@ -41,9 +41,9 @@ class Modal extends Component {
 }
 
 Modal.propTypes = {
-  ImageURL: propTypes.string.isRequired,
   tags: propTypes.string.isRequired,
   onClose: propTypes.func.isRequired,
 };
+
 
 export default Modal;

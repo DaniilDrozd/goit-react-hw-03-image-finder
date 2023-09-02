@@ -3,10 +3,10 @@ import PropTypes from 'prop-types';
 import css from './ImageGallery.module.css';
 import ImageGalleryItem from 'components/ImageGalleryItem/ImageGalleryItem';
 
-function ImageGallery({ items }) {
+function ImageGallery({ images }) {
   return (
     <ul className={css.ImageGallery}>
-      {items.map(item => (
+      {images.map(item => (
         <ImageGalleryItem key={item.id} item={item} />
       ))}
     </ul>
@@ -14,7 +14,7 @@ function ImageGallery({ items }) {
 }
 
 ImageGallery.propTypes = {
-  items: PropTypes.arrayOf(
+  images: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
     })
@@ -22,3 +22,4 @@ ImageGallery.propTypes = {
 };
 
 export default ImageGallery;
+ 

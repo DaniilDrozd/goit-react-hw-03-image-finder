@@ -4,9 +4,8 @@ import SearchBar from "./Searchbar/Searchbar";
 import Loader from "./Loader/Loader";
 import Button from "./Button/Button";
 import ImageGallery from "./ImageGallery/ImageGallery";
-import Modal from "./Modal/Modal"
-import { searchImages } from "components/Service/PixabayAPI";
-
+import Modal from "./Modal/Modal";
+import { searchImages } from './Service/PixabayAPI';
 
 class App extends Component {
   state = {
@@ -23,7 +22,7 @@ class App extends Component {
 
   componentDidUpdate(_, prevState) {
     if (prevState.topic !== this.state.topic || prevState.page !== this.state.page) {
-      this.searchImages(); 
+      this.searchImages();
     }
   }
 
@@ -35,15 +34,15 @@ class App extends Component {
       const data = await searchImages(topic, page);
 
       if (data.hits.length === 0) {
-        Notiflix.Notify.warning("Sorry, there are no images matching your search query. Please try again.");
+        Notiflix.Notify.warning(
+          "Sorry, there are no images matching your search query. Please try again."
+        );
         this.setState({ status: "idle" });
         return;
       }
 
-      const normalizedImages = this.normalizedImages(data.hits);
-
       this.setState((prevState) => ({
-        images: [...prevState.images, ...normalizedImages],
+        images: [...prevState.images, ...data.hits],
         status: "resolved",
         totalHits: data.totalHits,
       }));
@@ -71,11 +70,12 @@ class App extends Component {
 
   handleSelectedImage = (imageURL, tags) => {
     this.setState({
-      selectedImage: imageURL,
+      selectedImage: imageURL, 
       alt: tags,
       showModal: true,
     });
   };
+  
 
   closeModal = () => {
     this.setState({
@@ -89,7 +89,7 @@ class App extends Component {
       <>
         <SearchBar onSubmit={this.handleFormSubmit} />
         {status === "pending" && <Loader />}
-        {error} 
+        {error && <p>{error}</p>}
         {images.length > 0 && (
           <ImageGallery images={images} selectedImage={this.handleSelectedImage} />
         )}
@@ -97,7 +97,7 @@ class App extends Component {
           <Button onClick={this.handleLoadMore} />
         )}
         {showModal && (
-          <Modal selectedImage={selectedImage} tags={alt} onClose={this.closeModal} />
+         <Modal selectedImage={selectedImage} tags={alt} onClose={this.closeModal} />
         )}
       </>
     );

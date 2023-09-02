@@ -5,6 +5,7 @@
   font-size: 20px;
   border-radius: 5px;
   border: none;
-  color: white;
+  color:  #673AB7;
+  background-color: bisque;
   cursor: pointer;
 }
