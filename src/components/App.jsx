@@ -4,7 +4,6 @@ import SearchBar from "./Searchbar/Searchbar";
 import Loader from "./Loader/Loader";
 import Button from "./Button/Button";
 import ImageGallery from "./ImageGallery/ImageGallery";
-import Modal from "./Modal/Modal";
 import { searchImages } from './Service/PixabayAPI';
 
 class App extends Component {
@@ -68,7 +67,7 @@ class App extends Component {
 
 
   render() {
-    const { images, status, selectedImage, alt, error, showModal, totalHits } = this.state;
+    const { images, status,  error,  totalHits } = this.state;
     return (
       <>
         <SearchBar onSubmit={this.handleFormSubmit} />
