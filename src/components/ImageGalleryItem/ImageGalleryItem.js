@@ -26,6 +26,7 @@ class ImageGalleryItem extends Component {
         />
         {showModal && (
           <Modal
+            ImageURL ={item.largeImageURL}
             tags={item.tags}
             onClose={this.handleModalToggle}
           />

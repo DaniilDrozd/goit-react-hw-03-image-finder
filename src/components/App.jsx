@@ -15,9 +15,6 @@ class App extends Component {
     totalHits: 0,
     status: "idle",
     error: null,
-    selectedImage: "",
-    alt: "",
-    showModal: false,
   };
 
   componentDidUpdate(_, prevState) {
@@ -58,7 +55,7 @@ class App extends Component {
       page: 1,
       totalHits: 0,
       error: null,
-      showModal: false,
+  
     });
   };
 
@@ -68,20 +65,7 @@ class App extends Component {
     }));
   };
 
-  handleSelectedImage = (imageURL, tags) => {
-    this.setState({
-      selectedImage: imageURL, 
-      alt: tags,
-      showModal: true,
-    });
-  };
-  
 
-  closeModal = () => {
-    this.setState({
-      showModal: false,
-    });
-  };
 
   render() {
     const { images, status, selectedImage, alt, error, showModal, totalHits } = this.state;
@@ -91,13 +75,10 @@ class App extends Component {
         {status === "pending" && <Loader />}
         {error && <p>{error}</p>}
         {images.length > 0 && (
-          <ImageGallery images={images} selectedImage={this.handleSelectedImage} />
+          <ImageGallery images={images}/>
         )}
         {images.length !== totalHits && status === "resolved" && (
           <Button onClick={this.handleLoadMore} />
-        )}
-        {showModal && (
-         <Modal selectedImage={selectedImage} tags={alt} onClose={this.closeModal} />
         )}
       </>
     );
